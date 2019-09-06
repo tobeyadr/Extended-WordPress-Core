@@ -144,6 +144,18 @@ function set_cookie( $name='', $val='', $expiry=false )
 }
 
 /**
+ * Retrieve a cookie
+ *
+ * @param string $cookie
+ * @param bool $default
+ * @return mixed
+ */
+function get_cookie( $cookie='', $default=false )
+{
+    return get_array_var( $_COOKIE, $cookie, $default );
+}
+
+/**
  * Delete a cookie
  *
  * @param string $cookie
@@ -154,3 +166,34 @@ function delete_cookie( $cookie='' ){
     // empty value and expiration one hour before
     return setcookie($cookie, '', time() - 3600);
 }
+
+/**
+ * Ensures an array
+ *
+ * @param $array
+ * @return array
+ */
+function ensure_array( $array )
+{
+    if ( is_array( $array ) ){
+        return $array;
+    }
+
+    return [ $array ];
+}
+
+/**
+ * Register required scripts
+ */
+function register_admin_scripts()
+{
+    // Scripts
+    wp_register_script( 'select2', EXTENDED_CORE_ASSETS_PATH . 'lib/select2/js/select2.js', [], EXTENDED_CORE_VERSION );
+    wp_register_script( 'select2-full', EXTENDED_CORE_ASSETS_PATH . 'lib/select2/js/select2.full.js', [], EXTENDED_CORE_VERSION );
+    wp_register_script( 'extended-core-admin', EXTENDED_CORE_ASSETS_PATH . 'js/admin.js', [ 'jquery', 'jquery-ui', 'jquery-ui-autocomplete', 'select2-full' ], EXTENDED_CORE_VERSION );
+
+    // Styles
+    wp_register_style( 'jquery-ui', EXTENDED_CORE_ASSETS_PATH . 'lib/jquery-ui/jquery-ui.min.css', [], EXTENDED_CORE_VERSION );
+}
+
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\register_admin_scripts' );
