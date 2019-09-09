@@ -586,8 +586,9 @@ abstract class HTML
         }
 
         wp_enqueue_script( 'extended-core-admin' );
+	    wp_enqueue_style( 'wp-color-picker' );
 
-        return $this->input( $a );
+	    return $this->input( $a );
     }
 
     /**

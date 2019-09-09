@@ -188,12 +188,19 @@ function ensure_array( $array )
 function register_admin_scripts()
 {
     // Scripts
-    wp_register_script( 'select2', EXTENDED_CORE_ASSETS_PATH . 'lib/select2/js/select2.js', [], EXTENDED_CORE_VERSION );
-    wp_register_script( 'select2-full', EXTENDED_CORE_ASSETS_PATH . 'lib/select2/js/select2.full.js', [], EXTENDED_CORE_VERSION );
-    wp_register_script( 'extended-core-admin', EXTENDED_CORE_ASSETS_PATH . 'js/admin.js', [ 'jquery', 'jquery-ui', 'jquery-ui-autocomplete', 'select2-full' ], EXTENDED_CORE_VERSION );
+    wp_register_script( 'select2', EXTENDED_CORE_ASSETS_URL . 'lib/select2/js/select2.js', [], EXTENDED_CORE_VERSION );
+    wp_register_script( 'select2-full', EXTENDED_CORE_ASSETS_URL . 'lib/select2/js/select2.full.js', [], EXTENDED_CORE_VERSION );
+    wp_register_script( 'extended-core-admin', EXTENDED_CORE_ASSETS_URL . 'js/admin.js', [ 'jquery', 'jquery-ui-autocomplete', 'select2-full', 'wp-color-picker' ], EXTENDED_CORE_VERSION );
+
+    wp_localize_script( 'extended-core-admin', 'ExtendedCore', [
+	    '_wpnonce'  => wp_create_nonce(),
+	    '_wprest'   => wp_create_nonce( 'wp_rest' ),
+	    '_adminajax' => wp_create_nonce( 'admin_ajax' ),
+	    '_ajax_linking_nonce' => wp_create_nonce( 'internal-linking' ),
+    ] );
 
     // Styles
-    wp_register_style( 'jquery-ui', EXTENDED_CORE_ASSETS_PATH . 'lib/jquery-ui/jquery-ui.min.css', [], EXTENDED_CORE_VERSION );
+    wp_register_style( 'jquery-ui', EXTENDED_CORE_ASSETS_URL . 'lib/jquery-ui/jquery-ui.min.css', [], EXTENDED_CORE_VERSION );
 }
 
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\register_admin_scripts' );
+add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\register_admin_scripts' );

@@ -93,7 +93,7 @@ abstract class Metabox
      * @param $post
      * @return mixed
      */
-    abstract protected  function render( $post );
+    abstract protected function render( $post );
 
     /**
      * Save wrapper for the metabox

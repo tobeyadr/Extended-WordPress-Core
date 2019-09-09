@@ -1,14 +1,5 @@
 <?php
 /*
- * Plugin Name: Extended Core
- * Plugin URI:  https://www.groundhogg.io/extended-core/?utm_source=wp-plugins&utm_campaign=plugin-uri&utm_medium=wp-dash
- * Description: Building blocks for better WP plugins
- * Version: 2.0.9.6
- * Author: Groundhogg Inc.
- * Author URI: https://www.groundhogg.io/?utm_source=wp-plugins&utm_campaign=author-uri&utm_medium=wp-dash
- * Text Domain: extended-core
- * Domain Path: /languages
- *
  * Extended Core is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
